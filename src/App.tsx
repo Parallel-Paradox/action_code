@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import Voxybuns from "./components/button/voxybuns.comp/Voxybuns";
+import WordBox, {BoxType} from "./components/word_box.comp/WordBox";
 
 function App() {
   return (
-      <Voxybuns />
+      <WordBox word={"Hello, World!"} isDecrypt={false} boxType={BoxType.White} />
   );
 }
 

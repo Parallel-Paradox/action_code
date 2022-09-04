@@ -25,6 +25,13 @@ button {
   transition: transform 0.1s ease;
 }
 
+.button_top .encrypt { }
+.button_top .clicked { }
+.button_top .decrypt .red { }
+.button_top .decrypt .blue { }
+.button_top .decrypt .black { }
+.button_top .decrypt .white { }
+
 button:hover .button_top {
   /* Pull the button upwards when hovered */
   transform: translateY(calc(var(--button_thick) * (-1)));
