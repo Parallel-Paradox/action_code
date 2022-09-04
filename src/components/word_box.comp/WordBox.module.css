@@ -25,13 +25,6 @@ button {
   transition: transform 0.1s ease;
 }
 
-.button_top .encrypt { }
-.button_top .clicked { }
-.button_top .decrypt .red { }
-.button_top .decrypt .blue { }
-.button_top .decrypt .black { }
-.button_top .decrypt .white { }
-
 button:hover .button_top {
   /* Pull the button upwards when hovered */
   transform: translateY(calc(var(--button_thick) * (-1)));
@@ -41,3 +34,26 @@ button:active .button_top {
   /* Push the button downwards when pressed */
   transform: translateY(0);
 }
+
+.encrypt {
+  /* Nothing new. */
+}
+.clicked {
+  /* Keep the button upwards when clicked */
+  background: #b7b7b7;
+  transform: translateY(calc(var(--button_thick) * (-1)));
+}
+.decrypt {
+  /* Keep the button downwards when decrypted */
+  transform: translateY(0);
+}
+
+button:hover .decrypt {
+  /* Button keeps still when it has been decrypted */
+  transform: translateY(0);
+}
+
+.red { background: #e56d6d; }
+.blue { background: #6da5e5; }
+.black { background: #656565; }
+.white { background: #b7b7b7; }
