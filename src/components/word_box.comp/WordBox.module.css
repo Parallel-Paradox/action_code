@@ -35,7 +35,7 @@ button:active .button_top {
   transform: translateY(0);
 }
 
-.encrypt {
+.normal {
   /* Nothing new. */
 }
 .clicked {

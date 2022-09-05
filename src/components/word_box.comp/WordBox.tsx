@@ -1,8 +1,7 @@
 import style from "./WordBox.module.css";
-import {useState} from "react";
 
 export enum BoxState {
-  Encrypt, Clicked, Decrypt,
+  Normal, Clicked, Decrypt,
 }
 
 export enum BoxType {
@@ -11,20 +10,15 @@ export enum BoxType {
 
 
 export interface Props {
+  index: number;
+  clickedCallback: (index: number) => void;
   word: string;
-  isDecrypt: boolean;
+  boxState: BoxState;
   boxType: BoxType;
 }
 
-function WordBox({word, isDecrypt, boxType}: Props) {
-  const [boxState, setBoxState] = useState(BoxState.Encrypt);
-
-  let onClick: ( ) => void = ( ) => { setBoxState(getNextStateWhenClick(boxState)); };
-  if (isDecrypt) {
-    setBoxState(BoxState.Decrypt);
-  } else if (boxState === BoxState.Decrypt) {
-    setBoxState(BoxState.Encrypt);
-  }
+function WordBox({index, clickedCallback, word, boxState, boxType}: Props) {
+  let onClick: ( ) => void = ( ) => { clickedCallback(index); };
 
   return (
       <button onClick={onClick}>
@@ -41,7 +35,7 @@ function getClassName(boxState: BoxState, boxType: BoxType) {
 
   className += ' ';
   switch (boxState) {
-    case BoxState.Encrypt: className += style.encrypt; break;
+    case BoxState.Normal: className += style.normal; break;
     case BoxState.Clicked: className += style.clicked; break;
     case BoxState.Decrypt: className += style.decrypt; break;
   }
@@ -56,15 +50,4 @@ function getClassName(boxState: BoxState, boxType: BoxType) {
   }
 
   return className;
-}
-
-function getNextStateWhenClick(currentState: BoxState) {
-  let nextState: BoxState;
-  switch (currentState) {
-    case BoxState.Encrypt: nextState = BoxState.Clicked; break;
-    case BoxState.Clicked: nextState = BoxState.Encrypt; break;
-    case BoxState.Decrypt: nextState = BoxState.Decrypt; break;
-  }
-
-  return nextState;
 }
