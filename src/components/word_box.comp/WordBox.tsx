@@ -13,15 +13,15 @@ export interface Props {
   index: number;
   clickedCallback: (index: number) => void;
   word: string;
-  boxState: BoxState;
-  boxType: BoxType;
+  boxState?: BoxState;
+  boxType?: BoxType;
 }
 
-function WordBox({index, clickedCallback, word, boxState, boxType}: Props) {
-  let onClick: ( ) => void = ( ) => { clickedCallback(index); };
+function WordBox(
+    {index, clickedCallback, word, boxState = BoxState.Normal, boxType = BoxType.White}: Props) {
 
   return (
-      <button onClick={onClick}>
+      <button onClick={( ) => { clickedCallback(index); }}>
         <span className={getClassName(boxState, boxType)}>{word}</span>
       </button>
   );
